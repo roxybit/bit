@@ -1,0 +1,27 @@
+import requests
+from bs4 import BeautifulSoup
+
+# Create a parser function that takes the URL of the page as a parameter
+def simple_parser(url):
+    # Send a GET request and receive the HTML code of the page
+    response = requests.get(url)
+    
+    # Create a BeautifulSoup object for parsing the HTML
+    soup = BeautifulSoup(response.content, 'html.parser')
+    
+    # Example: Parsing the title of the page
+    title = soup.find('title').text
+    
+    # Example: Parsing all links on the page
+    links = soup.find_all('a')
+    link_urls = [link['href'] for link in links]
+    
+    # Return the parsing results
+    return title, link_urls
+
+# Example usage of the parser
+url = 'https://example.com'
+parsed_title, parsed_links = simple_parser(url)
+
+print('Page Title:', parsed_title)
+print('Links on the page:', parsed_links)
