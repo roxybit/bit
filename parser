@@ -25,3 +25,4 @@ parsed_title, parsed_links = simple_parser(url)
 
 print('Page Title:', parsed_title)
 print('Links on the page:', parsed_links)
+# End
